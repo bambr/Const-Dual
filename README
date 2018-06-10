@@ -34,6 +34,11 @@ SYNOPSIS
         print int $type;                               # 99
         print "type = $type";                          # type = TYPE_BAZ
 
+        # dual constants are always true!
+        use Const::Dual FALSE => 0;
+        print int FALSE;                               # 0
+        print "FALSE is ", FALSE ? "true" : "false";   # FALSE is true
+
 DESCRIPTION
     This module can be helpful when you use a lot of constants and really
     tired to deal with them. Numeric constants created with this module are
@@ -49,6 +54,9 @@ CAVEATS
     should force numeric context when necessary. This is strict rule and
     it's violation can lead to bugs. Common ways to force numeric context is
     "int $value" or "$value+0".
+
+    Dual constant in bool context is always TRUE, because one of constant's
+    value is it's name and it can not be FALSE.
 
 SOURCE
     The development version is on github at

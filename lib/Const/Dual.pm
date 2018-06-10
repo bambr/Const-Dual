@@ -7,7 +7,7 @@ use warnings;
 use Carp ();
 use Scalar::Util ();
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 NAME
 
@@ -49,6 +49,11 @@ Const::Dual - numeric constants that know their names
     $type = $TYPES_REVERSE{$type};
     print int $type;                               # 99
     print "type = $type";                          # type = TYPE_BAZ
+
+    # dual constants are always true!
+    use Const::Dual FALSE => 0;
+    print int FALSE;                               # 0
+    print "FALSE is ", FALSE ? "true" : "false";   # FALSE is true
 
 =cut
 
@@ -95,6 +100,8 @@ they are created as usual.
 
 Developer should ALWAYS keep in mind that he works with dual values and should force numeric context when necessary.
 This is strict rule and it's violation can lead to bugs. Common ways to force numeric context is C<int $value> or C<$value+0>.
+
+Dual constant in bool context is always TRUE, because one of constant's value is it's name and it can not be FALSE.
 
 =head1 SOURCE
 

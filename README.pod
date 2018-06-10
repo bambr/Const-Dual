@@ -36,6 +36,11 @@ Const::Dual - numeric constants that know their names
     print int $type;                               # 99
     print "type = $type";                          # type = TYPE_BAZ
 
+    # dual constants are always true!
+    use Const::Dual FALSE => 0;
+    print int FALSE;                               # 0
+    print "FALSE is ", FALSE ? "true" : "false";   # FALSE is true
+
 =head1 DESCRIPTION
 
 This module can be helpful when you use a lot of constants and really tired to deal with them. Numeric constants created
@@ -48,6 +53,8 @@ they are created as usual.
 
 Developer should ALWAYS keep in mind that he works with dual values and should force numeric context when necessary.
 This is strict rule and it's violation can lead to bugs. Common ways to force numeric context is C<int $value> or C<$value+0>.
+
+Dual constant in bool context is always TRUE, because one of constant's value is it's name and it can not be FALSE.
 
 =head1 SOURCE
 
